@@ -20,6 +20,7 @@
 #include "ftxui/dom/elements.hpp"  // for operator|, text, separator, vbox, Element, Elements, size, xflex, bgcolor, color, filler, hbox, dim, EQUAL, WIDTH, flex, yflex
 #include "ftxui/screen/color.hpp"  // for Color, ftxui, Color::Black, Color::White
 #include "scroller.hpp"            // for Scroller
+#include "section.hpp"             // for Section
 #include "simple_button_options.hpp"      // for SimpleButtonOption
 #include "subprocess/ProcessBuilder.hpp"  // for RunBuilder, run
 #include "subprocess/basic_types.hpp"  // for PipeOption, PipeOption::pipe, CompletedProcess, PipeOption::close
@@ -87,7 +88,7 @@ std::vector<File> Parse(std::string input) {
 
     if (start_with("+++") && parse_header) {
       assert(files.size() != 0);
-      files.back().right_file = get().substr(6);
+      files.back().right_file = get().substr(3);
       continue;
     }
 
@@ -305,19 +306,11 @@ int main(int argc, const char** argv) {
   auto scroller = Scroller(
       Renderer([&] { return Render(files[file_menu_selected], split); }));
 
-  auto file_menu_renderer = Renderer(file_menu, [&] {
-    return vbox({
-        text(L" Files "),
-        separator(),
-        file_menu->Render() | vscroll_indicator | yflex | yframe,
-    });
-  });
+  auto file_menu_renderer = Section(" Files ", file_menu);
 
   auto file_renderer = Renderer(scroller, [&, file_menu] {
     const File& file = files[file_menu_selected];
     return vbox({
-               text(L" Difference "),
-               separator(),
                text(file.left_file + " -> " + file.right_file),
                separator(),
                scroller->Render(),

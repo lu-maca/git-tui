@@ -23,6 +23,7 @@
 #include "ftxui/component/event.hpp"              // for Event, Event::Escape
 #include "ftxui/screen/color.hpp"  // for Color, Color::Green, Color::Red, Color::Black, Color::White
 #include "scroller.hpp"                   // for Scroller
+#include "section.hpp"                    // for Section
 #include "simple_button_options.hpp"      // for SimpleButtonOption
 #include "subprocess/ProcessBuilder.hpp"  // for RunBuilder, run
 #include "subprocess/basic_types.hpp"  // for PipeOption, PipeOption::pipe, CompletedProcess, PipeOption::close
@@ -271,29 +272,9 @@ int main(int argc, const char** argv) {
            bgcolor(Color::White) | color(Color::Black);
   });
 
-  menu_files = Renderer(menu_files, [menu_files] {
-    return vbox({
-        text("Files"),
-        separator(),
-        menu_files->Render() | vscroll_indicator | yframe | yflex,
-    });
-  });
-
-  menu_commit = Renderer(menu_commit, [menu_commit] {
-    return vbox({
-        text("Commit"),
-        separator(),
-        menu_commit->Render() | vscroll_indicator | yframe | yflex,
-    });
-  });
-
-  scroller = Renderer(scroller, [scroller] {
-    return vbox({
-        text("Content"),
-        separator(),
-        scroller->Render() | flex,
-    });
-  });
+  menu_files = Section("Files", menu_files);
+  menu_commit = Section("Commits", menu_commit);
+  scroller = Section("Commit", scroller);
 
   int menu_commit_width = 25;
   int menu_files_width = 25;

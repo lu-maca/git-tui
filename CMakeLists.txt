@@ -31,6 +31,8 @@ add_executable(git-tui
   src/main.cpp
   src/scroller.cpp
   src/scroller.hpp
+  src/section.hpp
+  src/section.cpp
   src/simple_button_options.hpp
   src/version.cpp
   src/version.hpp
