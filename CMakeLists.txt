@@ -7,9 +7,9 @@ project(git-tui
 # --- Dependencies--------------------------------------------------------------
 include(cmake/find_or_fetch_package.cmake)
 
-find_or_fetch_package(ftxui v6.0.0
+find_or_fetch_package(ftxui v6.1.9
   https://github.com/ArthurSonzogni/ftxui
-  v6.0.0
+  v6.1.9
 )
 
 find_or_fetch_package(subprocess v0.4.0

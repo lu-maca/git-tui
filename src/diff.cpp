@@ -309,7 +309,7 @@ int main(int argc, const char** argv) {
     return vbox({
         text(L" Files "),
         separator(),
-        file_menu->Render(),
+        file_menu->Render() | vscroll_indicator | yflex | yframe,
     });
   });
 
