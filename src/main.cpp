@@ -29,6 +29,9 @@ int main(int argc, const char** argv) {
   if (command == "log")
     return gittui::log::main(argc, argv);
 
+  if (command == "show")
+    return gittui::diff::main(argc, argv);
+
   if (command == "version" || command == "--version" || command == "-v")
     return gittui::version::main(argc, argv);
 

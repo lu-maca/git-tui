@@ -61,6 +61,9 @@ Available commands:
 ## `git tui log`
 [![asciicast](https://asciinema.org/a/vUk8EQRsmV95fQ9W5rhMMOHLG.svg)](https://asciinema.org/a/vUk8EQRsmV95fQ9W5rhMMOHLG)
 
+## `git tui show`
+...
+
 More to be added...
 
 # Contribute
